@@ -6,7 +6,7 @@ public class Bingo {
 		int cBMin =1;
 		int cBMax = 15;
 		
-		int random_int = (int)Math.floor(Math.random() * (cBmin - cBMax + 1) +cBmin);
+		int random_int = (int)Math.floor(Math.random() * (cBMin - cBMax + 1) +cBMin);
 		
 	}
 
