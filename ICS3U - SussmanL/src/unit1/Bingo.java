@@ -26,68 +26,6 @@ public class Bingo {
 		System.out.print("G");
 		System.out.print("\t");
 		System.out.println("O");
-//lists the columns
-		int cAMin = 1;
-		int cAMax = 15;
-		int cBMin = 16;
-		int cBMax = 30;
-		int cCMin = 31;
-		int cCMax = 45;
-		int cDMin = 46;
-		int cDMax = 60;
-		int cEMin = 61;
-		int cEMax =	75;
-//values for the random numbers for each column
-
-		for (int i = 0; i< 2; i++) {
-			int CA = (int)Math.floor(Math.random() * (cAMax - cAMin + 1) + cAMin);
-			int CB = (int)Math.floor(Math.random() * (cBMax - cBMin + 1) + cBMin);
-			int CC = (int)Math.floor(Math.random() * (cCMax - cCMin + 1) + cCMin);
-			int CD = (int)Math.floor(Math.random() * (cDMax - cDMin + 1) + cDMin);
-			int CE = (int)Math.floor(Math.random() * (cEMax - cEMin + 1) + cEMin);
-			System.out.print(CA);
-			System.out.print("\t");
-			System.out.print(CB);
-			System.out.print("\t");
-			System.out.print(CC);
-			System.out.print("\t");
-			System.out.print(CD);
-			System.out.print("\t");
-			System.out.println(CE);
-//prints the first two rows
-		}
-		for (int i = 0; i< 1; i++) {
-			int CA = (int)Math.floor(Math.random() * (cAMax - cAMin + 1) + cAMin);
-			int CB = (int)Math.floor(Math.random() * (cBMax - cBMin + 1) + cBMin);
-			int CD = (int)Math.floor(Math.random() * (cDMax - cDMin + 1) + cDMin);
-			int CE = (int)Math.floor(Math.random() * (cEMax - cEMin + 1) + cEMin);
-			System.out.print(CA);
-			System.out.print("\t");
-			System.out.print(CB);
-			System.out.print("\t");
-			System.out.print("FREE");
-			System.out.print("\t");
-			System.out.print(CD);
-			System.out.print("\t");
-			System.out.println(CE);
-// prints the free space row
-		}
-		for (int i = 0; i< 2; i++) {
-			int CA = (int)Math.floor(Math.random() * (cAMax - cAMin + 1) + cAMin);
-			int CB = (int)Math.floor(Math.random() * (cBMax - cBMin + 1) + cBMin);
-			int CC = (int)Math.floor(Math.random() * (cCMax - cCMin + 1) + cCMin);
-			int CD = (int)Math.floor(Math.random() * (cDMax - cDMin + 1) + cDMin);
-			int CE = (int)Math.floor(Math.random() * (cEMax - cEMin + 1) + cEMin);
-			System.out.print(CA);
-			System.out.print("\t");
-			System.out.print(CB);
-			System.out.print("\t");
-			System.out.print(CC);
-			System.out.print("\t");
-			System.out.print(CD);
-			System.out.print("\t");
-			System.out.println(CE);
-//prints the final row
-		}
 	}
+
 }
