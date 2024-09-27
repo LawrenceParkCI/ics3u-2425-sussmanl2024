@@ -5,8 +5,9 @@ package unit1;
  * @author Leo Sussman
  */
 public class Bingo {
-	//saving the % symbol, as my computer can not type it
+	
 	public static void main(String[] args) {
+		//rules of bingo
 		System.out.println("Bingo Card:");
 		System.out.println("___________________________");
 		System.out.println("1. The caller randomly pulls a numbered bingo card.");
@@ -16,16 +17,13 @@ public class Bingo {
 		System.out.println("5. Steps 1 to 4 are repeated until a player matches the BINGO pattern");
 		System.out.println("6. The winning player yells BINGO!");
 		System.out.println("_____________________________________________________________________");
-//rules of bingo
-		System.out.print("B");
-		System.out.print("\t");
-		System.out.print("I");
-		System.out.print("\t");
-		System.out.print("N");
-		System.out.print("\t");
-		System.out.print("G");
-		System.out.print("\t");
-		System.out.println("O");
+// prints the squares to play on
+		System.out.format(" B %5s %5s %5s %5s ","I", "N", "G", "O");
+		System.out.format("\n 2 %5s %5s %5s %5s ","16", "32", "48", "62");
+		System.out.format("\n 7 %5s %5s %5s %5s ","21", "34", "54", "64");
+		System.out.format("\n 8 %5s %6s %4s %5s ","23", "Free", "56", "67");
+		System.out.format("\n11 %5s %5s %5s %5s ","24", "37", "51", "74");
+		System.out.format("\n14 %5s %5s %5s %5s ","28", "40", "47", "75");
 	}
-
+	//saving the % and ( symbol, as my computer can not type them
 }
