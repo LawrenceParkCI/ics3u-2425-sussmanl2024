@@ -63,16 +63,16 @@ class CreatingVariables {
 		System.out.print("I am " +myAge);
 		System.out.println(" years old.");
 
-				//Print it out in a sentence (Hint: remember how we combined text and numbers in a print statement)
+		//Print it out in a sentence (Hint: remember how we combined text and numbers in a print statement)
 		myAge = 26;
 		System.out.println("I am now " +myAge);
-				//Assign it a new value, that is 10 more than the original value
+		//Assign it a new value, that is 10 more than the original value
 
-				//Print it out in a new sentence (Hint: remember how we combined text and numbers in a print statement)	
+		//Print it out in a new sentence (Hint: remember how we combined text and numbers in a print statement)	
 
 
 
-				//Note: When I use the word create in the future, I typically mean declare and initialize
+		//Note: When I use the word create in the future, I typically mean declare and initialize
 
 	}
 
