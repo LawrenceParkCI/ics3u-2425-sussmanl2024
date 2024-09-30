@@ -15,7 +15,7 @@ class CreatingVariables {
 		//Warmup: print your name
 		System.out.println("Leo Sussman");
 		//Warmup: print the calculation for the area of a square with side length 25
-		System.out.println("25x25=Area");
+		System.out.println("25x25=225");
 
 		//Key Question: what if the value I want to use needs to change?
 
@@ -40,7 +40,7 @@ class CreatingVariables {
 		myNum = 20;
 		System.out.println("myNum is now " + myNum);
 		//Why do the two codes print out different things?
-		//Because it follows BEDMAS, and we changed the value of the variable
+
 
 		System.out.println("Part 2 - Creating a Variable");
 
@@ -64,8 +64,8 @@ class CreatingVariables {
 
 		//Declare and initialize an int variable called myAge that stores your age.
 		int myAge = 16;
-		System.out.print("I am " +myAge);
-		System.out.println(" years old.");
+		System.out.println("I am " +myAge+ " years old");
+		
 
 		//Print it out in a sentence (Hint: remember how we combined text and numbers in a print statement)
 		myAge = 26;
