@@ -1,5 +1,9 @@
 package unit1;
-
+/**
+ * Description: This program teaches me how to create variables<br>
+ * Date: 2/10/2024 
+ * @author Leo Sussman
+ */
 import java.util.Scanner;
 public class InputFP {
 

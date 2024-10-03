@@ -1,5 +1,9 @@
 package unit1;
-
+/**
+ * Description: This program teaches me how to create variables<br>
+ * Date: 27/9/2024 
+ * @author Leo Sussman
+ */
 public class AsciiTextandImage {
 	public static void main(String[] args) {
 System.out.println("LLLLLLLLLLL             EEEEEEEEEEEEEEEEEEEEEE     OOOOOOOOO");
