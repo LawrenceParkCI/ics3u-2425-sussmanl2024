@@ -1,7 +1,7 @@
 package unit1;
 /**
- * Description: This program teaches me how to create variables<br>
- * Date: 2/10/2024 
+ * Description: This program teaches me how to use floating points<br>
+ * Date: 1/10/2024 
  * @author Leo Sussman
  */
 import java.util.Scanner;

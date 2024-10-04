@@ -1,6 +1,6 @@
 package unit1;
 /**
- * Description: This program teaches me how to create variables<br>
+ * Description: This program teaches me how to scan and create labels<br>
  * Date: 2/10/2024 
  * @author Leo Sussman
  */
