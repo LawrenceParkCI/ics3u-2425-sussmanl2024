@@ -1,6 +1,6 @@
 package unit1;
 /**
- * Description: This program calculates how many hours I've been asleep in my life<br>
+ * Description: This program calculates how many hours somebody has been asleep in my life<br>
  * Date: 4/10/2024 
  * @author Leo Sussman
  */
@@ -39,7 +39,7 @@ public class Alive {
 		double daysAlive = 365 * (currentYear-birthYear) + 30 * (currentMonth-birthMonth) + (currentDay-birthDay);
 		double hoursSlept = daysAlive * hoursDaily;
 		double yearsAlive = daysAlive/365;
-
+		Math.round(yearsAlive);
 		System.out.println("You have been alive for "  + yearsAlive + " years");
 		System.out.println("You have been alive for "  + daysAlive + " days");
 		System.out.println("You have slept for " + hoursSlept + " hours");

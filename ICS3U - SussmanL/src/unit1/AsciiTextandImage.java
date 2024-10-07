@@ -1,6 +1,6 @@
 package unit1;
 /**
- * Description: This program teaches me how to create variables<br>
+ * Description: This program does an Ascii image<br>
  * Date: 27/9/2024 
  * @author Leo Sussman
  */

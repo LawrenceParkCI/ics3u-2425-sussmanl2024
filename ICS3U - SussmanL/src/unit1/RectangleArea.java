@@ -1,6 +1,6 @@
 package unit1;
 /**
- * Description: This program teaches me how to do math<br>
+ * Description: This program finds the area for a rectangle<br>
  * Date: 2/10/2024 
  * @author Leo Sussman
  */
