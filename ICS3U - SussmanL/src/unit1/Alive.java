@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class Alive {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
 
-		
-		
+
+
+
 		int birthYear;
 		int birthMonth;
 		int birthDay;
@@ -35,11 +35,11 @@ public class Alive {
 		System.out.println("On average how many hours do you sleep per day");
 		hoursDaily=sc.nextDouble();
 
-		
+
 		double daysAlive = 365 * (currentYear-birthYear) + 30 * (currentMonth-birthMonth) + (currentDay-birthDay);
 		double hoursSlept = daysAlive * hoursDaily;
 		double yearsAlive = daysAlive/365;
-	
+
 		System.out.println("You have been alive for "  + yearsAlive + " years");
 		System.out.println("You have been alive for "  + daysAlive + " days");
 		System.out.println("You have slept for " + hoursSlept + " hours");
