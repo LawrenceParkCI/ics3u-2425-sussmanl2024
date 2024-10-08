@@ -9,8 +9,10 @@ public class StringManipulation {
 	public static void main(String[] args) throws InterruptedException {
 		Scanner sc = new Scanner(System.in);
 		String s;
-		System.out.println("Please type any sentence then press <ENTER>");
+		//getting the user's sentence
+		System.out.println("Please type any sentence, then press <ENTER>");
 		s = sc.nextLine();
+		//manipulating the string
 		Thread.sleep(1000);
 		System.out.println("Now it will be reprinted in all caps:");
 		System.out.println(s.toUpperCase());
@@ -28,8 +30,10 @@ public class StringManipulation {
 		System.out.println(s.charAt(5));
 		System.out.println("----------------------------------------------");
 		Thread.sleep(1000);
+		//getting the first and last space
 		int firstSpace = s.indexOf(" ");
 		int lastSpace = s.lastIndexOf(" ");
+		//first and last word
 		System.out.println("The first word of the program is: " + s.substring(0, firstSpace));
 		System.out.println("The last word of the program is: " + s.substring(lastSpace, s.length()));
 		sc.close();

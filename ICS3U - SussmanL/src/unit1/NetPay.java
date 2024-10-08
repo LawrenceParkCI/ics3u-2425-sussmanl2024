@@ -7,11 +7,12 @@ package unit1;
 public class NetPay {
 
 	public static void main(String[] args) {
+		//how much money each thing is
 		double hours = 40.00;
 		double wage = 5.00;
 		double insurance = 2.00;
 		double tax = 0.78;
-
+//the math to calculate his wages
 		double netPay = (hours * wage - insurance) * tax;
 		System.out.println("The net pay for the employee is $" + netPay);
 	}
