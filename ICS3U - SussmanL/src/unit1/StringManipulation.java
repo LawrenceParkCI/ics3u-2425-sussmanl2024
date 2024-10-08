@@ -31,7 +31,7 @@ public class StringManipulation {
 		int firstSpace = s.indexOf(" ");
 		int lastSpace = s.lastIndexOf(" ");
 		System.out.println("The first word of the program is: " + s.substring(0, firstSpace));
-		System.out.println("The last word of the program is: " + s.substring(lastSpace, s. charAt(s.length()-1)));
+		System.out.println("The last word of the program is: " + s.substring(lastSpace, s.length()));
 		sc.close();
 	}
 
