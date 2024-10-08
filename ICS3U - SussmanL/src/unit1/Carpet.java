@@ -25,10 +25,6 @@ public class Carpet {
 		//math
 		double finalCost = roomWidth*roomLength*carpetCost;
 		System.out.println("The cost to cover your room in carpet will cost $" + finalCost);
-
-		
-		
-		
 		sc.close();
 	}
 

@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Alive {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		// all the variables it is asking for
+		//all the variables it is asking for
 		int birthYear;
 		int birthMonth;
 		int birthDay;
@@ -32,8 +32,7 @@ public class Alive {
 		currentDay=sc.nextInt();
 		System.out.println("On average how many hours do you sleep per day");
 		hoursDaily=sc.nextDouble();
-
-//the math
+		//the math
 		int daysAlive = 365 * (currentYear-birthYear) + 30 * (currentMonth-birthMonth) + (currentDay-birthDay);
 		double hoursSlept = daysAlive * hoursDaily;
 		int yearsAlive = daysAlive/365;
