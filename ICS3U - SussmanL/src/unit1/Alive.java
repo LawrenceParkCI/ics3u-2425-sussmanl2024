@@ -33,9 +33,13 @@ public class Alive {
 		System.out.println("On average how many hours do you sleep per day");
 		hoursDaily=sc.nextDouble();
 		//the math
-		int daysAlive = 365 * (currentYear-birthYear) + 30 * (currentMonth-birthMonth) + (currentDay-birthDay);
+		double daysAlive = 365 * (currentYear-birthYear) + 30 * (currentMonth-birthMonth) + (currentDay-birthDay);
 		double hoursSlept = daysAlive * hoursDaily;
-		int yearsAlive = daysAlive/365;
+		double yearsAlive = daysAlive/365;
+		yearsAlive = yearsAlive*1000;
+		yearsAlive = (int) yearsAlive;
+		yearsAlive = (double) yearsAlive/1000;
+
 		//final result
 		System.out.println("You have been alive for "  + yearsAlive + " years");
 		System.out.println("You have been alive for "  + daysAlive + " days");
