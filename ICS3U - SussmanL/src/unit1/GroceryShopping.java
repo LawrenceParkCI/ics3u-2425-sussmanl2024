@@ -5,6 +5,8 @@ package unit1;
  * @author Leo Sussman
  */
 import java.util.Scanner;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.text.NumberFormat;
 public class GroceryShopping {
 	public static void main(String[] args) {
@@ -16,8 +18,12 @@ public class GroceryShopping {
 	double secondCost;
 	double firstAmount;
 	double secondAmount;
-	System.out.println("|| $$$ \"\\\\\\\"  ========== \"Mr. Sussman's Grocery\" ========== /// $$$ ||");
+	LocalDateTime date = LocalDateTime.now();
+	DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss"); 
+	String formattedDate = date.format(dateFormat);
+	System.out.println("|| $$$ \\\\\\  ========== \"Mr. Sussman's Grocery\" ========== /// $$$ ||");
 	System.out.println("After each question, answer then press <ENTER>, for answers that involve numbers just put numbers.");
+	//asking for the products, cost and quantity
 	System.out.println("What do you want to buy?");
 	firstBuy = sc.nextLine();
 	System.out.println("How many of those do you want");
@@ -31,20 +37,22 @@ public class GroceryShopping {
 	secondAmount = sc.nextDouble();
 	System.out.println("What is the cost for one of them?");
 	secondCost = sc.nextDouble();
-	System.out.println(firstBuy + secondBuy);
 	double firstSubtotal = firstCost*firstAmount;
 	double secondSubtotal = secondCost*secondAmount;
 	double subtotal = firstSubtotal+secondSubtotal;
 	double tax = subtotal*0.13;
 	double finalCost = subtotal+tax;
-	
-	System.out.format("Item: %-10s|Price: %-10s|Quant. %-10s|Total Price %-10s %-1s","","",""," ","\n");
 	System.out.println("--------------------------------------------------------------------");
-	System.out.format("%-16s|%-17s|%-17s|%-16s %-1s",firstBuy,firstCost,firstAmount,firstSubtotal, "\n");
-	System.out.format("%-16s|%-17s|%-17s|%-16s %-1s",secondBuy,secondCost,secondAmount,secondSubtotal, "\n");
+	System.out.println("Mr. Sussman's Grocery");
+	System.out.println(formattedDate);
+	System.out.format("Item %-11s|Price %-11s|Quant. %-10s|Total Price %-10s %-1s","","",""," ","\n");
 	System.out.println("--------------------------------------------------------------------");
-System.out.println("\t\t\t\t a");
-	
+	System.out.format("%-16s|%-17s|%-17s|%-16s %-1s",firstBuy,money.format(firstCost),firstAmount,money.format(firstSubtotal), "\n");
+	System.out.format("%-16s|%-17s|%-17s|%-16s %-1s",secondBuy,money.format(secondCost),secondAmount,money.format(secondSubtotal), "\n");
+	System.out.println("--------------------------------------------------------------------");
+System.out.println("\t\t\t\t\t\t Subtotal: " + money.format(subtotal));
+System.out.println("\t\t\t\t\t\t Tax: " + money.format(tax));
+System.out.println("\t\t\t\t\t\t Final Cost: " + money.format(finalCost));
 	sc.close();
 	}
 
