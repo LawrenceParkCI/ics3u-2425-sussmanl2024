@@ -1,6 +1,6 @@
 package unit1;
 /**
- * Description: The unit 1 final assignment<br>
+ * Description: The unit 1 final assignment, making a grocery shopping receiptbr>
  * Date: 18/10/2024 
  * @author Leo Sussman
  */
@@ -26,14 +26,14 @@ public class GroceryShopping {
 		System.out.println("After each question, answer then press <ENTER>, for answers that involve numbers just put numbers.");
 		//asking for the products, cost and quantity
 		System.out.println("What do you want to buy?");
-		firstBuy = sc.nextLine();
+		firstBuy = sc.nextLine()+"                ";//making sure there is no error with the receipt while printing, because of the substrings to limit the length of the input
 		System.out.println("How many of those do you want");
 		firstAmount = sc.nextInt();
 		System.out.println("What is the cost for one of them?");
 		firstCost = sc.nextDouble();
 		sc.nextLine();
 		System.out.println("What else do you want to buy?");
-		secondBuy = sc.nextLine();
+		secondBuy = sc.nextLine()+"                ";//making sure there is no error with the receipt while printing, because of the substrings to limit the length of the input
 		System.out.println("How many of those do you want");
 		secondAmount = sc.nextInt();
 		System.out.println("What is the cost for one of them?");
@@ -53,14 +53,14 @@ public class GroceryShopping {
 		System.out.format("%-16s|%-17s|%-17s|%-16s %-1s",firstBuy.substring(0, 16),money.format(firstCost),firstAmount,money.format(firstSubtotal), "\n");
 		System.out.format("%-16s|%-17s|%-17s|%-16s %-1s",secondBuy.substring(0, 16),money.format(secondCost),secondAmount,money.format(secondSubtotal), "\n");
 		System.out.println("--------------------------------------------------------------------");
-		System.out.format("%-51s %-1s %-1s","", "Subtotal: " + money.format(subtotal), "\n");
-		System.out.format("%-56s %-1s %-1s","", "Tax: " + money.format(tax), "\n");
-		System.out.format("%-49s %-1s %-1s","", "Final Cost: " + money.format(finalCost), "\n");
+		System.out.format("%-47s %-1s %-1s","", "Subtotal: " + money.format(subtotal), "\n");
+		System.out.format("%-52s %-1s %-1s","", "Tax: " + money.format(tax), "\n");
+		System.out.format("%-45s %-1s %-1s","", "Final Cost: " + money.format(finalCost), "\n");
 		//rounding to nearest dollar
 		System.out.println("This is approximately " + money.format(Math.round(finalCost)));
 		//rounding to nearest 5 cents
 		finalCost = finalCost*20;
-		finalCost = (int) finalCost;
+		finalCost = (int) Math.round(finalCost);
 		finalCost = (double) finalCost/20;
 		System.out.println("This is approximately " + money.format(finalCost));
 		sc.close();
