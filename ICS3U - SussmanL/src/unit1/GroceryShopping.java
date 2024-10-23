@@ -12,6 +12,7 @@ public class GroceryShopping {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		NumberFormat money = NumberFormat.getCurrencyInstance();
+		//the variables for what they are buying, cost and amount
 		String firstBuy;
 		String secondBuy;
 		double firstCost;
@@ -47,7 +48,7 @@ public class GroceryShopping {
 		//printing the receipt
 		System.out.println("--------------------------------------------------------------------");
 		System.out.println("Mr. Sussman's Grocery");
-		System.out.println(formattedDate);
+		System.out.println(formattedDate);//printing date and time
 		System.out.format("Item %-11s|Price %-11s|Quant. %-10s|Total Price %-10s %-1s","","",""," ","\n");
 		System.out.println("--------------------------------------------------------------------");
 		System.out.format("%-16s|%-17s|%-17s|%-16s %-1s",firstBuy.substring(0, 16),money.format(firstCost),firstAmount,money.format(firstSubtotal), "\n");
@@ -63,6 +64,9 @@ public class GroceryShopping {
 		finalCost = (int) Math.round(finalCost);
 		finalCost = (double) finalCost/20;
 		System.out.println("This is approximately " + money.format(finalCost));
+		System.out.println();
+		System.out.println("HAVE A GOOD DAY!");
+		System.out.println("THANK YOU FOR SHOPPING AT MR. SUSSMAN'S GROCERY!! HOPE TO SEE YOU AGAIN :)");
 		sc.close();
 	}
 }
