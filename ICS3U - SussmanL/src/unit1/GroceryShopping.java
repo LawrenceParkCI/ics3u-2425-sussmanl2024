@@ -1,13 +1,13 @@
 package unit1;
+import java.util.Scanner;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.text.NumberFormat;
 /**
  * Description: The unit 1 final assignment, making a grocery shopping receiptbr>
  * Date: 18/10/2024 
  * @author Leo Sussman
  */
-import java.util.Scanner;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.text.NumberFormat;
 public class GroceryShopping {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -64,7 +64,7 @@ public class GroceryShopping {
 		finalCost = (int) Math.round(finalCost);
 		finalCost = (double) finalCost/20;
 		System.out.println("This is approximately " + money.format(finalCost));
-		System.out.println();
+		System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
 		System.out.println("HAVE A GOOD DAY!");
 		System.out.println("THANK YOU FOR SHOPPING AT MR. SUSSMAN'S GROCERY!! HOPE TO SEE YOU AGAIN :)");
 		sc.close();

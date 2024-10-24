@@ -1,12 +1,12 @@
 package unit1;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
 /**
  * Description: This program teaches me how to use decimalformat<br>
  * Date: 17/10/2024 
  * @author Leo Sussman
  */
-import java.text.DecimalFormat;
-import java.util.Scanner;
-
 public class DFOutput {
 
 	public static void main(String[] args) {

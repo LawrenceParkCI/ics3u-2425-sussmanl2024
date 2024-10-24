@@ -1,10 +1,10 @@
 package unit1;
+import java.text.NumberFormat;
 /**
  * Description: This program teaches me how to use decimalformat<br>
  * Date: 17/10/2024 
  * @author Leo Sussman
  */
-import java.text.NumberFormat;
 import java.util.Scanner;
 public class NFOutput {
 	public static void main(String[] args) {

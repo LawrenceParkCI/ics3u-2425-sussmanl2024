@@ -1,10 +1,10 @@
 package unit1;
+import java.util.Scanner;
 /**
  * Description: This program calculates the cost for a carpet based on your needs<br>
  * Date: 7/10/2024 
  * @author Leo Sussman
  */
-import java.util.Scanner;
 public class Carpet {
 
 	public static void main(String[] args) throws InterruptedException {

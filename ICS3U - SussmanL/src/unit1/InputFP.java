@@ -1,10 +1,10 @@
 package unit1;
+import java.util.Scanner;
 /**
  * Description: This program teaches me how to use floating points<br>
  * Date: 1/10/2024 
  * @author Leo Sussman
  */
-import java.util.Scanner;
 public class InputFP {
 
 	public static void main(String[] args) {

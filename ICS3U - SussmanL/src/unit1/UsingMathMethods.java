@@ -1,10 +1,10 @@
 package unit1;
+import java.util.Scanner;
 /**
  * Description: This program teaches me how to use math methods<br>
  * Date: 10/10/2024 
  * @author Leo Sussman
  */
-import java.util.Scanner;
 public class UsingMathMethods {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

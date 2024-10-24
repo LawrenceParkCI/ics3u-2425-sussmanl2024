@@ -1,10 +1,11 @@
 package unit1;
+import java.util.Scanner;
 /**
  * Description: This program finds the area for a rectangle<br>
  * Date: 2/10/2024 
  * @author Leo Sussman
  */
-import java.util.Scanner;
+
 public class RectangleArea {
 
 	public static void main(String[] args) {

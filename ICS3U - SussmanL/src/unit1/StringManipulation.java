@@ -1,10 +1,10 @@
 package unit1;
+import java.util.Scanner;
 /**
  * Description: This program manipulates a string that is inputed to the program<br>
  * Date: 7/10/2024 
  * @author Leo Sussman
  */
-import java.util.Scanner;
 public class StringManipulation {
 	public static void main(String[] args) throws InterruptedException {
 		Scanner sc = new Scanner(System.in);

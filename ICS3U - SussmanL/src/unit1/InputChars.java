@@ -1,10 +1,11 @@
 package unit1;
+
+import java.util.Scanner;
 /**
  * Description: This program teaches me how to scan and use chars<br>
  * Date: 1/10/2024 
  * @author Leo Sussman
  */
-import java.util.Scanner;
 public class InputChars {
 	public static void main(String[] args) {
 

@@ -1,10 +1,10 @@
 package unit1;
+import java.util.Scanner;
 /**
  * Description: This program calculates how many hours somebody has been asleep in their life<br>
  * Date: 4/10/2024 
  * @author Leo Sussman
  */
-import java.util.Scanner;
 public class Alive {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
