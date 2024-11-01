@@ -19,7 +19,7 @@ public class GroceryShopping {
 		double secondCost;
 		int firstAmount;
 		int secondAmount;
-		
+		//getting the date and time, and formatting it
 		LocalDateTime date = LocalDateTime.now();
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss"); 
 		String formattedDate = date.format(dateFormat);
@@ -62,7 +62,7 @@ public class GroceryShopping {
 		//rounding to nearest 5 cents
 		finalCost = finalCost*20;
 		finalCost = (int) Math.round(finalCost);
-		finalCost = (double) finalCost/20;
+		finalCost = (double) finalCost/20; 
 		System.out.println("This is approximately " + money.format(finalCost));
 		System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
 		System.out.println("HAVE A GOOD DAY!");
