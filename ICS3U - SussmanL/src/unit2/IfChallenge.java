@@ -5,8 +5,6 @@ import java.util.Scanner;
  * Date: Nov 5th 2024
  * @author Leo Sussman
  */
-
-
 public class IfChallenge {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
