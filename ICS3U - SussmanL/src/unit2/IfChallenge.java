@@ -18,7 +18,7 @@ public class IfChallenge {
 
     ask for the user's favourite number.
     if the number is negative, say that they need to look on
-    the bright side.  If their number is odd, say that it's a 
+    the bright side.  If th0eir number is odd, say that it's a 
     bit strange.
 
     (IF, ELSE)

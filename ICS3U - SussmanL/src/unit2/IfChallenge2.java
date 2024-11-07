@@ -3,9 +3,7 @@ import java.util.Scanner;
 /**
  * Description: If Challenge 2
  * Date: Nov 5th 2024
- * @author Leo S
- * 
- * ussman
+ * @author Leo Sussman
  */
 
 
