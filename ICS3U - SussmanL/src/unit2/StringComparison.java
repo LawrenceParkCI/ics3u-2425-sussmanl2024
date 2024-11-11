@@ -7,26 +7,26 @@ import java.util.Scanner;
  */
 
 class StringComparison {
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 
-    Scanner sc = new Scanner(System.in);
-    
-    String answer;
+		Scanner sc = new Scanner(System.in);
 
-    System.out.println("What is the capital of Ontario?");
-    answer = sc.nextLine();
+		String answer;
 
+		System.out.println("What is the capital of Ontario?");
+		answer = sc.nextLine();
+		/*
     if (answer == "Toronto") {
       System.out.println("Correct!");
     } else {
       System.out.println("Sorry, that's incorrect.");
     }
-    
-    //Run the code. What happens when you type the correct answer? The incorrect answer?
-//No matter what it is incorrect
-    /*
+		 */
+		//Run the code. What happens when you type the correct answer? The incorrect answer?
+		//No matter what it is incorrect
+		/*
       Strings are objects, not primitives and as such are a 
-      *reference* data type. These variables hold an address 
+		 *reference* data type. These variables hold an address 
       to the value. (Scanner is also a reference data type)
 
       int, double, char, etc. are all *primitive* data types. 
@@ -39,19 +39,21 @@ class StringComparison {
         .compareTo()
         .equals()
         .equalsIgnoreCase()
-    */
+		 */
 
-    if (answer.equalsIgnoreCase() == "Toronto") {
-        System.out.println("Correct!");
-      } else {
-        System.out.println("Sorry, that's incorrect.");
-      }
-    //What values does compareTo() return? How can we 
-    //interpret the value?
+		if (answer.equalsIgnoreCase("Toronto")) {
+			System.out.println("Correct!");
+		} else {
+			System.out.println("Sorry, that's incorrect.");
+		}
+		//What values does compareTo() return? How can we 
+		//interpret the value?
 
-    //what value does equals() and equalsIgnoreCase() return? 
-    //What is the difference between these two functions?
-    //one you need to submit the exact same string, the other allows any order of capitals or not, it just looks at the letters
-    sc.close();
-  }
+		//compareTo() gets the value of the strings and compares them to see if they are greater to less than or equal to each other
+
+		//what value does equals() and equalsIgnoreCase() return? 
+		//What is the difference between these two functions?
+		//one you need to submit the exact same string, the other allows any order of capitals or not, it just looks at the letters
+		sc.close();
+	}
 }
