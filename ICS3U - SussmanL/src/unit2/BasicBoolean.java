@@ -9,7 +9,6 @@ public class BasicBoolean {
   public static void main(String[] args) {
     //we've declared a variable called isPurple of boolean type
     //Recall: boolean holds either true or false
-    boolean isPurple = false;
 
 
     /*

@@ -14,7 +14,7 @@ public class StringChallenge {
 		int  points = 0;
 		String answerPoints;
 		String finalPoints;
-		
+
 		System.out.println("Who is the best teacher?");
 		answerStr = sc.nextLine();
 		//if they typed the exact right thing, they get more points
@@ -29,11 +29,10 @@ public class StringChallenge {
 			System.out.println("WHO? no points");
 		}
 
-		
-		
-		System.out.println(points);
+
+
 		System.out.println("Hope you were counting, how many points do you have?");
-	
+
 		answerPoints = sc.nextLine();
 		finalPoints = String.valueOf(points);
 		if (answerPoints.compareTo(finalPoints) == 0 ) {
