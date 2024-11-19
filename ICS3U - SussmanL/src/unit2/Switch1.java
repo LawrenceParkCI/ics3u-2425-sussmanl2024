@@ -1,3 +1,4 @@
+package unit2;
 import java.util.Scanner;
 /**
  * Description: extra challenge switch1
@@ -62,7 +63,7 @@ public class Switch1 {
 			System.out.println("2 days to the weekend");
 			break;
 		case "Friday":
-			System.out.println("1 days to the weekend");
+			System.out.println("1 day to the weekend");
 			break;
 		default:
 			System.out.println("It is the Weekend!!!!");
