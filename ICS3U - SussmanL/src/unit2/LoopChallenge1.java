@@ -9,21 +9,20 @@ Date:
 */
 
 public class LoopChallenge1 {
- public static void main(String[] args) {
+ public static void main(String[] args) throws InterruptedException {
 	 Scanner sc = new Scanner(System.in);
 	 
 	 
-int tries = 3;
+	 System.out.println("What's the password?");
+	 System.out.println("I'll do the first one for you: Password1");
+	 Thread.sleep(3000);
 	   String password;
-		   do {
-			   tries = tries -1;
-			    System.out.println("What's the password?");
-			     password = sc.nextLine();
-			     
-			   } while (!password.equals("349176552") || tries == 0);
-		   if (tries == 0) {
-			   System.out.println("LOCKED");
-		   }else
+		   do {		
+	
+			   System.out.println("Wrong, what's the password?");	
+			   password = sc.nextLine();
+			   } while (!password.equals("349176552"));
+		 
 		        System.out.println("UNLOCKED");
 			 
 
