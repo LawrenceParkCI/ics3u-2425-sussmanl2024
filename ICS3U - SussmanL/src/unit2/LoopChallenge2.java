@@ -2,9 +2,9 @@ package unit2;
 import java.util.Scanner;
 
 /**
- Description:
- Date:
- @author
+Description: Loop Challenge 2 
+Date: nov 25th, 2024
+@author Leo Sussman
 */
 
 public class LoopChallenge2 {

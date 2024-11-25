@@ -1,8 +1,8 @@
 package unit2;
 /**
-Description:
-Date:
-@author 
+Description: Learning while loops
+Date: nov 25th, 2024
+@author Leo Sussman
 */
 
 import java.util.Scanner;
