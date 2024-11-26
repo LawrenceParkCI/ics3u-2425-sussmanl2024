@@ -59,7 +59,7 @@ public class For2 {
 			sum += i;
 		}
 		System.out.println(sum);
-
+		//it adds the sum of i, which goes up, which means it goes +1, +2, +3 ... , +9
 
 		sc.close();
 	}
