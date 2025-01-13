@@ -49,9 +49,12 @@ public class FinalProject {
 				playerHand.add(deck.remove(0));//giving the player 2 cards
 				playerHand.add(deck.remove(0));
 				printSlow("Your hand is: " + playerHand.getFirst() + " and " + playerHand.getLast(), pause);
+				printSlow("The value of your hand is " + handValue(playerHand), pause);
 				dealerHand.add(deck.remove(0));//giving the dealer two cards but only one is shown
 				dealerHand.add(deck.remove(0));
 				printSlow("The dealer is showing: " + dealerHand.getFirst(), pause);
+
+
 				if (handValue(playerHand) == 21) {//auto win if you start with blacjack
 					System.out.println("Blackjack! You win!");
 				}else if (handValue(playerHand) < 21){ //all other times you get to hit or stand
@@ -66,7 +69,7 @@ public class FinalProject {
 								choice = c.readLine();
 								playerHand.add(deck.remove(0));
 								printSlow("You get drawn the " + playerHand.getLast(), pause);
-							}else {
+							}else {//if they hit too much, they bust and it ends their turn
 								printSlow("YOU BUST. ROUND OVER", pause);
 								bust = true;
 							}
@@ -77,12 +80,13 @@ public class FinalProject {
 				if (bust ==false) {
 					printSlow("You stand on " + handValue(playerHand), pause);
 					dealerTurn(dealerHand,deck);
-					winner(playerHand, dealerHand);
 				}
 
+				winner(playerHand, dealerHand, bet, money);
+				printSlow("You now have $" + money, pause);
 				c.println("Do you want to play again?(Y/N)");
 				choice = c.readLine();
-				if (choice.equalsIgnoreCase(choice)) {
+				if (choice.equalsIgnoreCase("Y")) {
 					playAgain = true;
 				}else
 					playAgain = false;
@@ -108,7 +112,7 @@ public class FinalProject {
 	}
 	public static ArrayList <String> makeDeck(){
 		String[] suits = {"Diamonds", "Hearts","Clubs","Spades"};
-		String[] ranks = {"1", "2","3","4","5", "6","7","8","9","10","Jack","Queen","King","Ace"};
+		String[] ranks = {"2","3","4","5", "6","7","8","9","10","Jack","Queen","King","Ace"};
 		ArrayList <String> deck = new ArrayList<>();
 		for(String suit: suits) {
 			for(String rank: ranks) {
@@ -119,34 +123,38 @@ public class FinalProject {
 	}
 	public static int handValue(ArrayList<String> hand) {
 		int value = 0;
+		int aceCounter = 0;
 		for (String card : hand) {
 			String rank = card.split(" ")[0];
 			if (rank.equals("Jack") || rank.equals("Queen") || rank.equals("King")) {
 				value += 10;
 			} else if (rank.equals("Ace")) {
-				if (handValue(hand)>21) {
-					value += 1;
-				}else
-					value +=11;
+				value += 1;
+				aceCounter += 1;
 			} else {
 				value += Integer.parseInt(rank);
 			}
+		
 		}
+
+		c.print(aceCounter);
 		return value;
 	}
-	public static int winner(ArrayList<String> playerHand,ArrayList<String> dealerHand) throws InterruptedException {
-		int winner;
+
+
+
+	public static double winner(ArrayList<String> playerHand,ArrayList<String> dealerHand, double bet, double money) throws InterruptedException {
 		if(handValue(playerHand)>handValue(dealerHand) && handValue(playerHand) <= 21) {
 			printSlow("YOU WIN!!", pause);
-			winner = 2;
+			money = money+(bet*2);
 		}else if (handValue(playerHand)==handValue(dealerHand) && handValue(playerHand) <= 21) {
-			printSlow("TIE!!! You keep your money, but do not gain anything", pause);
-			winner = 1;
-		}else {
+			printSlow("TIE! You keep your money, but do not gain anything", pause);
+			money = money+bet;
+		}else if ((handValue(playerHand)<handValue(dealerHand) || handValue(playerHand) > 21)){
 			printSlow("You Lose", pause);
-			winner = 0;
+			money = money-bet;
 		}
-		return winner;
+		return money;
 	}
 	public static int dealerTurn(ArrayList<String> dealerHand, ArrayList<String> deck) throws InterruptedException{
 		printSlow("The dealer shows " + dealerHand.getLast(), pause);
@@ -157,11 +165,10 @@ public class FinalProject {
 		}
 		if(handValue(dealerHand) > 21) {
 			printSlow("The dealer busts", pause);
-			printSlow("YOU WIN!", pause);
 		}else {
 			printSlow("The dealer stands on " + handValue(dealerHand), pause);
 		}
 		return handValue(dealerHand);
-		
+
 	}
 }
