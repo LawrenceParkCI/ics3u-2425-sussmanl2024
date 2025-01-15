@@ -7,12 +7,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import javax.imageio.ImageIO;
 import hsa_new.Console;
+/**
+ * This program allows you to play blackjack against an bot dealer, and win or lose fake money
+ * January 15, 2024
+ * 
+ * @author Leo Sussman
+ */
 public class FinalProject {
 	static Console c = new Console(50, 150);
 	static int pause = 1;//the pause while printing
 	static ArrayList<String> deck;//the deck of cards
 	static ArrayList<String> dealerHand = new ArrayList<>();//the dealers hand
 	static ArrayList<String> playerHand = new ArrayList<>();//the players hand
+	
+/**
+ * The main method allows you to choose your moves and bet money, and then it tells you if you win or not.
+ * 
+ * @param args Unused
+ * @throws InterruptedException
+ */
 	public static void main(String[] args) throws InterruptedException {
 		c.setTextBackgroundColor(Color.LIGHT_GRAY);//sets background colour
 		c.clear();
@@ -163,13 +176,23 @@ public class FinalProject {
 
 
 	public static void printSlow (String str, double pause) throws InterruptedException {
+		/**
+		 * This makes the text print out slowly, to make it look cool
+		 * @param str String, will be the words they want to get typed
+		 * @param  pause Double, will be the pause in between each character typed
+		 * @throws InterruptedException
+		 */
 		for (int i = 1; i < str.length() + 1; i++) { //a for loop that prints out text character by character
 			c.print(str.substring(i - 1, i));
 			Thread.sleep((long) pause);
 		}
 		c.println();
 	}
-	public static ArrayList <String> makeDeck(){//makes a new array list with every possible combination between these two arrays
+	public static ArrayList <String> makeDeck(){
+		/**
+		 * 
+		 * makes a new array list with every possible combination between these two arrays (52 possibilities, so 52 cards)
+		 */
 		String[] suits = {"Diamonds", "Hearts","Clubs","Spades"};
 		String[] ranks = {"2", "3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"};
 		ArrayList <String> deck = new ArrayList<>();
@@ -181,6 +204,10 @@ public class FinalProject {
 		return deck;
 	}
 	public static int handValue(ArrayList<String> hand) {
+		/**
+		 * Gets the value of the cards in your hand
+		 * @param hand ArrayList<String>,will be the hand they want to get calculated
+		 */
 		int value = 0;// calculates the value of a hand, starts off at 0
 		boolean hasAce = false;//sees if an ace has been dealt to the hand
 		for (String card : hand) {
@@ -207,6 +234,14 @@ public class FinalProject {
 
 
 	public static double winner(ArrayList<String> playerHand,ArrayList<String> dealerHand, double bet, double money) throws InterruptedException {
+		/**
+		 * Decides who wins, and then updates the money accordingly
+		 * @param playerHand ArrayList<String>,will be compared to dealerHand to see who won
+		 * @param dealerHand ArrayList<String>,will be compared to player Hand to see who won
+		 * @param bet Double, will be added or subtracted from your money based on if you win or not	
+		 * @param money Double, will be added or subtracted from your money based on if you win or not	 
+		 * @throws InterruptedException
+		 */
 		if((handValue(playerHand)>handValue(dealerHand) && handValue(playerHand) <= 21) || handValue(dealerHand)>21) {//all the ways to win
 			printSlow("YOU WIN!!", pause);
 			money = money+bet;//gives you your start money plus the amount you bet
@@ -221,6 +256,12 @@ public class FinalProject {
 		return money;
 	}
 	public static int dealerTurn(ArrayList<String> dealerHand, ArrayList<String> deck) throws InterruptedException{
+		/**
+		 * The dealers turn, decides if the dealer hits or not. Also sees if the dealer busts, and if so then the player wins.
+		 * @param deck ArrayList<String>,if the dealer hits it will remove a card from the deck and add it to the dealers hand
+		 * @param dealerHand ArrayList<String>,will update the hand if they hit or not. It is also used to see the value of the hand.
+		 * @throws InterruptedException
+		 */
 		drawImages(false);//draw images false makes it so it shows all the cards, this is the only time it happens
 		printSlow("The dealer shows the " + dealerHand.getFirst(), pause);
 		Thread.sleep(1500);//dealer shows his hidden card
@@ -246,6 +287,13 @@ public class FinalProject {
 
 	}
 	public static void drawCard(ArrayList<String> hand, boolean player, boolean dealerHide) throws InterruptedException{
+		/**
+		 * Draws the cards in the players hand
+		 * @param hand ArrayList<String>,Whichever hand is to be printed out
+		 * @param player boolean, will decide if it is the players hand or the dealers hand	
+		 * @param dealerHide boolean, decides if the card will be hidden (what the dealer has at the start of the game)	 
+		 */
+		
 		for(int i = 0; i < hand.size(); i++) {//loops through all the cards in the hand
 
 			String cardName = hand.get(i);//sets card to the name of the last card in hand
@@ -275,7 +323,12 @@ public class FinalProject {
 		}
 	}
 	public static void drawImages(boolean dealerHide) throws InterruptedException{
-		c.clear();//whenever it draws cards, it clears the screen then will draw both the hands again, because the text background can cut into it, so it makes it look better
+		/**
+		 * whenever it draws cards, it clears the screen then will draw both the hands again, because the text background can cut into it, so it makes it look better
+		 * @param dealerHide boolean, when the cards are being redrawn, just need to see if the card will be hidden (same as dealerHide in drawCard)
+		 * @throws InterruptedException
+		 */
+		c.clear();
 		drawCard(playerHand, true, false);
 		drawCard(dealerHand, false, dealerHide);
 
