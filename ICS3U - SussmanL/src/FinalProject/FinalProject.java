@@ -36,29 +36,29 @@ public class FinalProject {
 		if (choice.equalsIgnoreCase("y")) {
 			playAgain = true;
 		}
-		
 
-			
-			while (playAgain == true && money >0) {
+
+
+		while (playAgain == true && money >0) {
 			c.clear();
 			playerHand.clear();
 			dealerHand.clear();
-		
+
 			boolean betMade = false;
 			deck = makeDeck();//getting a randomized deck
 			Collections.shuffle(deck);
-			
+
 			printSlow("How much would you like to bet? (whole dollar amounts please)", pause);
-				printSlow("You currently have $" + money, pause);
-				
-				bet = c.readDouble();
-				if (bet<= money) {
-					betMade = true;
-					printSlow("You bet $" + bet, pause);
-				}else {
-					printSlow("That is not a valid bet", pause);
-					Thread.sleep(1000);
-				}
+			printSlow("You currently have $" + money, pause);
+
+			bet = c.readDouble();
+			if (bet<= money) {
+				betMade = true;
+				printSlow("You bet $" + bet, pause);
+			}else {
+				printSlow("That is not a valid bet", pause);
+				Thread.sleep(1000);
+			}
 			if (betMade == true) { // starting the turn
 				playerHand.add(deck.remove(0));//giving the player 2 cards
 				playerHand.add(deck.remove(0));
@@ -127,14 +127,14 @@ public class FinalProject {
 					playAgain = false; 
 			}
 		}
-			if (money==0) {
-				printSlow("You have no money. Sorry, but its game over now.", pause);
-				
-			}else {
-				printSlow("Thanks for playing!", pause);
+		if (money==0) {
+			printSlow("You have no money. Sorry, but its game over now.", pause);
 
-			}
-		
+		}else {
+			printSlow("Thanks for playing!", pause);
+
+		}
+
 	}
 
 
@@ -207,7 +207,7 @@ public class FinalProject {
 		drawImages(false);
 		printSlow("The dealer shows the " + dealerHand.getFirst(), pause);
 		Thread.sleep(1500);
-		
+
 		while(handValue(dealerHand) < 17) {
 			dealerHand.add(deck.remove(0));
 			drawImages(false);
@@ -225,39 +225,39 @@ public class FinalProject {
 	}
 	public static void drawCard(ArrayList<String> hand, boolean player, boolean dealerHide) throws InterruptedException{
 		for(int i = 0; i < hand.size(); i++) {
-		
-		String cardName = hand.get(i);
-		BufferedImage card=null;//https://code.google.com/archive/p/vector-playing-cards/  Thank you for putting these card images in the public domain
-		try {
-			
-			cardName = cardName.replace(" ", "_");
-			if (player == false && dealerHide==true && i==0) {
-				cardName = "cardBack";
-			}else{
-				cardName = cardName.replace(" ", "_");
-			}
-			card = ImageIO.read(new File("src/pics/" + cardName + ".png"));
 
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.print(cardName);
-		}
-		int x = 100;
-		int y = 300;
-		if (player == true) {
-			y = 550;
-		}
-		 	x += (i - 1)*75;
+			String cardName = hand.get(i);
+			BufferedImage card=null;//https://code.google.com/archive/p/vector-playing-cards/  Thank you for putting these card images in the public domain
+			try {
+
+				cardName = cardName.replace(" ", "_");
+				if (player == false && dealerHide==true && i==0) {
+					cardName = "cardBack";
+				}else{
+					cardName = cardName.replace(" ", "_");
+				}
+				card = ImageIO.read(new File("src/pics/" + cardName + ".png"));
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.print(cardName);
+			}
+			int x = 100;
+			int y = 300;
+			if (player == true) {
+				y = 550;
+			}
+			x += (i - 1)*75;
 			c.drawImage(card, x, y, 150, 219, c);
-	      
+
 		}
 	}
 	public static void drawImages(boolean dealerHide) throws InterruptedException{
 		c.clear();
 		drawCard(playerHand, true, false);
 		drawCard(dealerHand, false, dealerHide);
-		
+
 	}
-		
-	}
+
+}
 
