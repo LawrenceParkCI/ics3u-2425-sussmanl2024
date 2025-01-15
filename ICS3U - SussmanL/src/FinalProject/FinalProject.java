@@ -12,20 +12,18 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import hsa_new.Console;
 public class FinalProject {
-	static Console c = new Console(100, 1000);
+	static Console c = new Console(50, 100);
 	static int pause = 1;
+	static ArrayList<String> deck;
+	static ArrayList<String> dealerHand = new ArrayList<>();
+	static ArrayList<String> playerHand = new ArrayList<>();
 	public static void main(String[] args) throws InterruptedException {
-		c.setTextColor(Color.BLACK);
-		c.setTextBackgroundColor(Color.LIGHT_GRAY);
 		c.clear();
 		double money = 1000;
 		boolean bust = false;
 		double bet = 0;
 		String choice;
-		ArrayList<String> deck;
-		ArrayList<String> dealerHand = new ArrayList<>();
-		ArrayList<String> playerHand = new ArrayList<>();
-		drawCard(playerHand, true);
+
 
 		boolean playAgain = false;
 		c.println("Welcome to Blackjack!");
@@ -38,20 +36,21 @@ public class FinalProject {
 		if (choice.equalsIgnoreCase("y")) {
 			playAgain = true;
 		}
+		
 
-		while (playAgain == true) {
+			
+			while (playAgain == true && money >0) {
 			c.clear();
 			playerHand.clear();
 			dealerHand.clear();
-			System.out.println(playerHand);
+		
 			boolean betMade = false;
 			deck = makeDeck();//getting a randomized deck
 			Collections.shuffle(deck);
+			
 			printSlow("How much would you like to bet? (whole dollar amounts please)", pause);
-			if (money==0) {
-				printSlow("You have no money. Sorry, but its game over now.", pause);
-			}else {
 				printSlow("You currently have $" + money, pause);
+				
 				bet = c.readDouble();
 				if (bet<= money) {
 					betMade = true;
@@ -60,32 +59,40 @@ public class FinalProject {
 					printSlow("That is not a valid bet", pause);
 					Thread.sleep(1000);
 				}
-			}
-			while (betMade == true) { // starting the turn
+			if (betMade == true) { // starting the turn
 				playerHand.add(deck.remove(0));//giving the player 2 cards
-				
 				playerHand.add(deck.remove(0));
-				printSlow("Your hand is: " + playerHand.getFirst() + " and " + playerHand.getLast(), pause);
-				printSlow("The value of your hand is " + handValue(playerHand), pause);
+				drawImages(true);
 				dealerHand.add(deck.remove(0));//giving the dealer two cards but only one is shown
 				dealerHand.add(deck.remove(0));
-				printSlow("The dealer is showing: " + dealerHand.getFirst(), pause);
+				drawImages(true);
+				printSlow("Your hand is: " + playerHand.getFirst() + " and " + playerHand.getLast(), pause);
+				printSlow("The value of your hand is " + handValue(playerHand), pause);
+				printSlow("The dealer is showing: " + dealerHand.getLast(), pause);
 
 
-				if (handValue(playerHand) == 21) {//auto win if you start with blacjack
+				if (handValue(playerHand) == 21) {//auto win if you start with blackjack
 					System.out.println("Blackjack! You win!");
 				}else if (handValue(playerHand) < 21){ //all other times you get to hit or stand
 					printSlow("Do you want to hit or stand", pause);
 					choice = c.readLine();
 					if(choice.equalsIgnoreCase("hit")) {//if you hit
 						playerHand.add(deck.remove(0));
+						drawImages(true);					
 						printSlow("You get drawn the " + playerHand.getLast(), pause);
 						printSlow("The value of your hand is now " + handValue(playerHand), pause);
-						printSlow("Do you want to hit or stand", pause);
-						choice = c.readLine();
+						if (handValue(playerHand) > 21) {//if you hit over 21 then you bust
+							printSlow("YOU BUST. ROUND OVER", pause);
+							bust = true;
+						}else {
+							printSlow("Do you want to hit or stand", pause);//value under 21 you can choose again
+							choice = c.readLine();
+						}
 						while (!choice.equalsIgnoreCase("stand") && bust!=true) {//loops doing hit and hit again until you choose stand
 							if (handValue(playerHand) <= 21) {
 								playerHand.add(deck.remove(0));
+								drawImages(true);					
+								drawCard(playerHand, true, false);
 								printSlow("You get drawn the " + playerHand.getLast(), pause);
 								printSlow("The value of your hand is " + handValue(playerHand), pause);
 								if (handValue(playerHand) > 21) {//if you hit over 21 then you bust
@@ -120,7 +127,14 @@ public class FinalProject {
 					playAgain = false; 
 			}
 		}
+			if (money==0) {
+				printSlow("You have no money. Sorry, but its game over now.", pause);
+				
+			}else {
+				printSlow("Thanks for playing!", pause);
 
+			}
+		
 	}
 
 
@@ -176,7 +190,7 @@ public class FinalProject {
 
 
 	public static double winner(ArrayList<String> playerHand,ArrayList<String> dealerHand, double bet, double money) throws InterruptedException {
-		if(handValue(playerHand)>handValue(dealerHand) && handValue(playerHand) <= 21) {
+		if((handValue(playerHand)>handValue(dealerHand) && handValue(playerHand) <= 21) || handValue(dealerHand)>21) {
 			printSlow("YOU WIN!!", pause);
 			money = money+bet;
 		}else if (handValue(playerHand)==handValue(dealerHand) && handValue(playerHand) <= 21) {
@@ -190,33 +204,60 @@ public class FinalProject {
 		return money;
 	}
 	public static int dealerTurn(ArrayList<String> dealerHand, ArrayList<String> deck) throws InterruptedException{
-		printSlow("The dealer shows " + dealerHand.getLast(), pause);
+		drawImages(false);
+		printSlow("The dealer shows the " + dealerHand.getFirst(), pause);
+		Thread.sleep(1500);
+		
 		while(handValue(dealerHand) < 17) {
-			Thread.sleep(1000);
 			dealerHand.add(deck.remove(0));
+			drawImages(false);
 			printSlow("The dealer draws the " + dealerHand.getLast(), pause);
+			Thread.sleep(750);
 		}
 		if(handValue(dealerHand) > 21) {
 			printSlow("The dealer busts", pause);
+			return 0;
 		}else {
 			printSlow("The dealer stands on " + handValue(dealerHand), pause);
 		}
 		return handValue(dealerHand);
 
 	}
-	public static void drawCard(ArrayList<String> hand, boolean player) throws InterruptedException{
-		int dealerXPoint = 600;
-		int dealerYPoint = 100;
-		int playerXPoint = 600;
-		int playerYPoint = 10;
-		if (player == true) {
-			c.setColor(Color.WHITE);
-		c.fillRect(playerXPoint,playerYPoint , 100, 200);
-		playerXPoint += 30;
-		}else {
-			c.fillRect(dealerXPoint,dealerYPoint , 100, 150);
-		dealerXPoint += 30;
+	public static void drawCard(ArrayList<String> hand, boolean player, boolean dealerHide) throws InterruptedException{
+		for(int i = 0; i < hand.size(); i++) {
+		
+		String cardName = hand.get(i);
+		BufferedImage card=null;//https://code.google.com/archive/p/vector-playing-cards/  Thank you for putting these card images in the public domain
+		try {
+			
+			cardName = cardName.replace(" ", "_");
+			if (player == false && dealerHide==true && i==0) {
+				cardName = "cardBack";
+			}else{
+				cardName = cardName.replace(" ", "_");
+			}
+			card = ImageIO.read(new File("src/pics/" + cardName + ".png"));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.print(cardName);
 		}
+		int x = 100;
+		int y = 300;
+		if (player == true) {
+			y = 550;
+		}
+		 	x += (i - 1)*75;
+			c.drawImage(card, x, y, 150, 219, c);
+	      
+		}
+	}
+	public static void drawImages(boolean dealerHide) throws InterruptedException{
+		c.clear();
+		drawCard(playerHand, true, false);
+		drawCard(dealerHand, false, dealerHide);
 		
 	}
-}
+		
+	}
+
