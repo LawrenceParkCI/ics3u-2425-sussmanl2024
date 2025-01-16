@@ -199,7 +199,7 @@ public class FinalProject {
 		for(String suit: suits) {
 			for(String rank: ranks) {
 				deck.add(rank + " of " + suit);
-			}
+			} 
 		}
 		return deck;
 	}
