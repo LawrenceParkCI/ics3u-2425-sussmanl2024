@@ -23,7 +23,7 @@ import hsa_new.Console;
  */
 public class FinalProject {
 	static Console c = new Console(50, 150);
-	static int pause = 1;//the pause while printing
+	static int pause = 20;//the pause while printing
 	static ArrayList<String> deck;//the deck of cards
 	static ArrayList<String> dealerHand = new ArrayList<>();//the dealers hand
 	static ArrayList<String> playerHand = new ArrayList<>();//the players hand
@@ -174,11 +174,11 @@ public class FinalProject {
 		}
 		if (money==0) {
 			printSlow("You have no money. Sorry, but its game over now.", pause);//you can't play anymore
-			Thread.sleep(6000);
+			Thread.sleep(4000);
 			c.close();
 		}else {
 			printSlow("Thanks for playing!", pause);//if you choose to quit then it says thanks
-			Thread.sleep(6000);
+			Thread.sleep(4000);
 			c.close();
 		}
 
