@@ -7,20 +7,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 import javax.imageio.ImageIO;
 import hsa_new.Console;
+/**
+ * This program allows you to play blackjack against an bot dealer, and win or lose fake money
+ * January 15, 2024
+ * 
+ * @author Leo Sussman
+ */
 public class FinalProject {
 	static Console c = new Console(50, 150);
 	static int pause = 1;//the pause while printing
 	static ArrayList<String> deck;//the deck of cards
 	static ArrayList<String> dealerHand = new ArrayList<>();//the dealers hand
 	static ArrayList<String> playerHand = new ArrayList<>();//the players hand
+
+	/**
+	 * The main method allows you to choose your moves and bet money, and then it tells you if you win or not.
+	 * 
+	 * @param args Unused
+	 * @throws InterruptedException
+	 */
 	public static void main(String[] args) throws InterruptedException {
-		c.setTextBackgroundColor(Color.LIGHT_GRAY);//sets background colour
+		c.setTextBackgroundColor(Color.LIGHT_GRAY);//sets background color
 		c.clear();
 		double money = 1000;
 		boolean bust = false;
 		double bet = 0;
 		String choice;
-
+runTests();
 
 		boolean playAgain = false;
 		c.println("Welcome to Blackjack!");//rules of blackjack and an intro
@@ -45,12 +58,11 @@ public class FinalProject {
 			deck = makeDeck();//getting a randomized deck
 			Collections.shuffle(deck);
 
-
 			printSlow("How much would you like to bet? (whole dollar amounts please)", pause);
 			printSlow("You currently have $" + money, pause);
 
 			bet = c.readDouble();
-			if (bet<= money && bet>0) {
+			if (bet<= money) {
 				betMade = true;
 				printSlow("You bet $" + bet, pause);
 			}else {
@@ -95,7 +107,7 @@ public class FinalProject {
 					}
 					if(choice.equalsIgnoreCase("hit")) {//if you hit
 						playerHand.add(deck.remove(0));
-						drawImages(true);			//draws your new card		
+						drawImages(true);//draws your new card		
 						printSlow("You get drawn the " + playerHand.getLast(), pause);
 						printSlow("The value of your hand is now " + handValue(playerHand), pause);
 						if (handValue(playerHand) > 21) {//if you hit over 21 then you bust
@@ -129,7 +141,7 @@ public class FinalProject {
 
 				if (bust == false) {//if you didn't bust then you see who won
 					printSlow("You stand on " + handValue(playerHand), pause);
-					Thread.sleep(500);
+					Thread.sleep(800);
 					dealerTurn(dealerHand,deck);
 				}
 
@@ -147,141 +159,199 @@ public class FinalProject {
 		}
 		if (money==0) {
 			printSlow("You have no money. Sorry, but its game over now.", pause);//you can't play anymore
-
+			Thread.sleep(6000);
+			c.close();
 		}else {
 			printSlow("Thanks for playing!", pause);//if you choose to quit then it says thanks
-
+			Thread.sleep(6000);
+			c.close();
 		}
 
-	}
+	}    
 
-
-
-
-
-
-
-
-
+  
 	public static void printSlow (String str, double pause) throws InterruptedException {
+		/**
+		 * This makes the text print out slowly, to make it look cool
+		 * @param str String, will be the words they want to get typed
+		 * @param  pause Double, will be the pause in between each character typed
+		 * @throws InterruptedException
+		 */
 		for (int i = 1; i < str.length() + 1; i++) { //a for loop that prints out text character by character
 			c.print(str.substring(i - 1, i));
 			Thread.sleep((long) pause);
 		}
 		c.println();
 	}
-	public static ArrayList <String> makeDeck(){//makes a new array list with every possible combination between these two arrays
+	public static ArrayList <String> makeDeck(){
+		/**
+		 * 
+		 * makes a new array list with every possible combination between these two arrays (52 possibilities, so 52 cards)
+		 */
 		String[] suits = {"Diamonds", "Hearts","Clubs","Spades"};
-		String[] ranks = {"Ace","Ace","Ace","Ace","Ace", "10"};
+		String[] ranks = {"2", "3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"};
 		ArrayList <String> deck = new ArrayList<>();
 		for(String suit: suits) {
 			for(String rank: ranks) {
 				deck.add(rank + " of " + suit);
-			}//"2", "3","4","5","6","7","8","9","10","Jack","Queen","King",
-		}
+			}
+		} 
 		return deck;
 	}
-	public static int handValue(ArrayList<String> hand) {
-		int value = 0;// calculates the value of a hand, starts off at 0
-		boolean hasAce = false;//sees if an ace has been dealt to the hand
-		for (String card : hand) {
-			hasAce = false;
-			String rank = card.split(" ")[0];
-			if (rank.equals("Jack") || rank.equals("Queen") || rank.equals("King")) {
-				value += 10;//if the card starts in jack, queen or king then it gives the value of 10
-			} else if (!rank.equalsIgnoreCase("Ace")){
-				value += Integer.parseInt(rank);//it parseInts the number cards to get the value
-			}
-				if (rank.equals("Ace")) {
-					value += 1;//ace start value is 1
-					hasAce = true;
-					if (hasAce==true && value <12) {
-						value += 10;//if the value is less than 12 and there is at least 1 ace then it adds 10 to the value
-					}
-				}
+	
+
+	
+	
+public static int handValue(ArrayList<String> hand) {
+	/**
+	 * Gets the value of the cards in your hand
+	 * @param hand ArrayList<String>,will be the hand they want to get calculated
+	 */
+	int value = 0;// calculates the value of a hand, starts off at 0
+	boolean hasAce = false;//sees if an ace has been dealt to the hand
+	for (String card : hand) {
+		String rank = card.split(" ")[0];
+		if (rank.equals("Jack") || rank.equals("Queen") || rank.equals("King")) {
+			value += 10;//if the card starts in jack, queen or king then it gives the value of 10
+		} else if (rank.equals("Ace")) {
+			value += 1;//ace start value is 1
+			hasAce = true;
 			
-
-		}
-
-		return value;
+		} else {
+			value += Integer.parseInt(rank);//it parseInts the number cards to get the value
+		} 
+		
+	}
+	if (hasAce==true && value <12) {
+		value += 10;//if the value is less than 12 and there is at least 1 ace then it adds 10 to the value
 	}
 
+	return value;
+}
 
 
-	public static double winner(ArrayList<String> playerHand,ArrayList<String> dealerHand, double bet, double money) throws InterruptedException {
-		if((handValue(playerHand)>handValue(dealerHand) && handValue(playerHand) <= 21) || handValue(dealerHand)>21) {//all the ways to win
-			printSlow("YOU WIN!!", pause);
-			money = money+bet;//gives you your start money plus the amount you bet
-		}else if (handValue(playerHand)==handValue(dealerHand) && handValue(playerHand) <= 21) {
-			printSlow("TIE! You keep your money, but do not gain anything", pause);
-			//nothing happens in a tie
-		}else if ((handValue(playerHand)<handValue(dealerHand) || handValue(playerHand) > 21)){//all the ways to lose
-			printSlow("You Lose", pause);
-			money = money-bet;//you lose your bet amount
 
-		}
-		return money;
+public static double winner(ArrayList<String> playerHand,ArrayList<String> dealerHand, double bet, double money) throws InterruptedException {
+	/**
+	 * Decides who wins, and then updates the money accordingly
+	 * @param playerHand ArrayList<String>,will be compared to dealerHand to see who won
+	 * @param dealerHand ArrayList<String>,will be compared to player Hand to see who won
+	 * @param bet Double, will be added or subtracted from your money based on if you win or not	
+	 * @param money Double, will be added or subtracted from your money based on if you win or not	 
+	 * @throws InterruptedException
+	 */
+	if((handValue(playerHand)>handValue(dealerHand) && handValue(playerHand) <= 21) || handValue(dealerHand)>21) {//all the ways to win
+		printSlow("YOU WIN!!", pause);
+		money = money+bet;//gives you your start money plus the amount you bet
+	}else if (handValue(playerHand)==handValue(dealerHand) && handValue(playerHand) <= 21) {
+		printSlow("TIE! You keep your money, but do not gain anything", pause);
+		//nothing happens in a tie
+	}else if ((handValue(playerHand)<handValue(dealerHand) || handValue(playerHand) > 21)){//all the ways to lose
+		printSlow("You Lose", pause);
+		money = money-bet;//you lose your bet amount
+
 	}
-	public static int dealerTurn(ArrayList<String> dealerHand, ArrayList<String> deck) throws InterruptedException{
-		drawImages(false);//draw images false makes it so it shows all the cards, this is the only time it happens
-		printSlow("The dealer shows the " + dealerHand.getFirst(), pause);
-		Thread.sleep(1500);//dealer shows his hidden card
+	return money;
+}
+public static int dealerTurn(ArrayList<String> dealerHand, ArrayList<String> deck) throws InterruptedException{
+	/**
+	 * The dealers turn, decides if the dealer hits or not. Also sees if the dealer busts, and if so then the player wins.
+	 * @param deck ArrayList<String>,if the dealer hits it will remove a card from the deck and add it to the dealers hand
+	 * @param dealerHand ArrayList<String>,will update the hand if they hit or not. It is also used to see the value of the hand.
+	 * @throws InterruptedException
+	 */
+	drawImages(false);//draw images false makes it so it shows all the cards, this is the only time it happens
+	printSlow("The dealer shows the " + dealerHand.getFirst(), pause);
+	Thread.sleep(1500);//dealer shows his hidden card
 
-		while(handValue(dealerHand) < 16) {//if it is under 16 the dealer hits
+	while(handValue(dealerHand) < 16) {//if it is under 16 the dealer hits
+		dealerHand.add(deck.remove(0));
+		drawImages(false);
+		printSlow("The dealer draws the " + dealerHand.getLast(), pause);
+		Thread.sleep(750);
+	}if (handValue(dealerHand) == 16) {//if it is equal to 16 then the dealer will hit 40% of the time
+		if (Math.random()>0.6) {
 			dealerHand.add(deck.remove(0));
 			drawImages(false);
 			printSlow("The dealer draws the " + dealerHand.getLast(), pause);
-			Thread.sleep(750);
-		}if (handValue(dealerHand) == 16) {//if it is equal to 16 then the dealer will hit 40% of the time
-			if (Math.random()>0.6) {
-				dealerHand.add(deck.remove(0));
-				drawImages(false);
-				printSlow("The dealer draws the " + dealerHand.getLast(), pause);
-			}
-		}
-		if(handValue(dealerHand) > 21) {//if the dealer busts then he loses
-			printSlow("The dealer busts", pause);
-		}else {//the dealer can stand on values >=16
-			printSlow("The dealer stands on " + handValue(dealerHand), pause);
-		}
-		return handValue(dealerHand);
-
-	}
-	public static void drawCard(ArrayList<String> hand, boolean player, boolean dealerHide) throws InterruptedException{
-		for(int i = 0; i < hand.size(); i++) {//loops through all the cards in the hand
-
-			String cardName = hand.get(i);//sets card to the name of the last card in hand
-			BufferedImage card=null;//https://code.google.com/archive/p/vector-playing-cards/  Thank you for putting these card images in the public domain
-			try {
-
-				cardName = cardName.replace(" ", "_");//replaces the space in the card name for a _ because that is how the file looks
-				if (player == false && dealerHide==true && i==0) {//if it is the dealers card face down, it makes the card show the back of te card image
-					cardName = "cardBack";
-				}else{
-					cardName = cardName.replace(" ", "_");
-				}
-				card = ImageIO.read(new File("src/pics/" + cardName + ".png"));//it will draw the most recent card drawn
-
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.out.print(cardName);//if it is an error it will print out the last
-			}
-			int x = 100;
-			int y = 300;
-			if (player == true) {
-				y = 550;//if it is the players cards then they are lower
-			}
-			x += (i - 1)*75;//moves the cards over based every card that is dealt
-			c.drawImage(card, x, y, 150, 219, c);//draws all the cards
-
 		}
 	}
-	public static void drawImages(boolean dealerHide) throws InterruptedException{
-		c.clear();//whenever it draws cards, it clears the screen then will draw both the hands again, because the text background can cut into it, so it makes it look better
-		drawCard(playerHand, true, false);
-		drawCard(dealerHand, false, dealerHide);
+	if(handValue(dealerHand) > 21) {//if the dealer busts then he loses
+		printSlow("The dealer busts", pause);
+	}else {//the dealer can stand on values >=16
+		printSlow("The dealer stands on " + handValue(dealerHand), pause);
+	}
+	return handValue(dealerHand);
+
+}
+public static void drawCard(ArrayList<String> hand, boolean player, boolean dealerHide) throws InterruptedException{
+	/**
+	 * Draws the cards in the players hand
+	 * @param hand ArrayList<String>,Whichever hand is to be printed out
+	 * @param player boolean, will decide if it is the players hand or the dealers hand	
+	 * @param dealerHide boolean, decides if the card will be hidden (what the dealer has at the start of the game)	 
+	 */
+
+	for(int i = 0; i < hand.size(); i++) {//loops through all the cards in the hand
+
+		String cardName = hand.get(i);//sets card to the name of the last card in hand
+		BufferedImage card=null;//https://code.google.com/archive/p/vector-playing-cards/  Thank you for putting these card images in the public domain
+		try {
+
+			cardName = cardName.replace(" ", "_");//replaces the space in the card name for a _ because that is how the file looks
+			if (player == false && dealerHide==true && i==0) {//if it is the dealers card face down, it makes the card show the back of the card image
+				cardName = "cardBack";
+			}else{
+				cardName = cardName.replace(" ", "_");
+			}
+			card = ImageIO.read(new File("src/pics/" + cardName + ".png"));//it will draw the most recent card drawn
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.print(cardName);//if it is an error it will print out the last
+		}
+		int x = 100;
+		int y = 300;
+		if (player == true) {
+			y = 550;//if it is the players cards then they are lower
+		}
+		x += (i - 1)*75;//moves the cards over based every card that is dealt
+		c.drawImage(card, x, y, 150, 219, c);//draws all the cards
 
 	}
+}
+public static void drawImages(boolean dealerHide) throws InterruptedException{
+	/**
+	 * whenever it draws cards, it clears the screen then will draw both the hands again, because the text background can cut into it, so it makes it look better
+	 * @param dealerHide boolean, when the cards are being redrawn, just need to see if the card will be hidden (same as dealerHide in drawCard)
+	 * @throws InterruptedException
+	 */
+	c.clear();
+	drawCard(playerHand, true, false);
+	drawCard(dealerHand, false, dealerHide);
 
 }
 
+public static boolean runTests(){
+	boolean pass = true;
+	ArrayList<String> hand = new ArrayList<String>();
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades"); 
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	hand.addLast("Ace of Spades");
+	c.print(handValue(hand));
+	pass = pass && handValue(hand) == 22;
+	
+	
+	return pass;
+}
+
+}
